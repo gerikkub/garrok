@@ -3,6 +3,8 @@ function Ball(initX,initY){
 	this.initX = initX;
 	this.initY = initY;
 
+	this.r = 2;
+
 	this.x = initX;
 	this.y = initY;
 
@@ -18,7 +20,7 @@ function Ball(initX,initY){
 		this.Vx += this.Fx;
 		this.Vy += this.Fy;
 
-		console.log("Fx: " + this.Fx + " Fy: " + this.Fy);
+//		console.log("Fx: " + this.Fx + " Fy: " + this.Fy);
 
 		this.Fx = 0;
 		this.Fy = 0;
@@ -37,6 +39,25 @@ function Ball(initX,initY){
 	this.addForce = function(Fx,Fy){
 		this.Fx = Fx;
 		this.Fy = Fy;
+	}
+
+	this.reset = function(){
+		this.Vx = 0;
+		this.Vy = 0;
+		this.x = this.initX;
+		this.y = this.initY;
+	}
+
+	this.collidesWith = function(obj){
+		if(Math.sqrt(distSquared(this.x,this.y,obj.x,obj.y)) < 50){
+			//console.log(Math.sqrt(distSquared(this.x,this.y,obj.x,obj.y)));
+			console.log(obj.r);
+		}
+		if(distSquared(this.x,this.y,obj.x,obj.y) < Math.pow(obj.r + this.r,2)){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

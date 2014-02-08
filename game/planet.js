@@ -16,8 +16,8 @@ function Planet(x,y,radius,gravity,dTheta,image){
 	this.theta = 0;
 	this.dTheta = dTheta;
 
-	img = new Image();
-	img.src = "../assets/g3_blueplanet.svg";
+	var img = new Image();
+	img.src = "../assets/g3_blueplanet.png";
 
 	this.applyGravity = function(ball){
 		dx = this.x - ball.x;
@@ -45,7 +45,6 @@ function Planet(x,y,radius,gravity,dTheta,image){
 
 		this.phi = phi;
 
-		console.log(this.fociDistance);
 
 	}
 

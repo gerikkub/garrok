@@ -18,7 +18,7 @@ function Ball(initX,initY){
 		this.Vx += this.Fx;
 		this.Vy += this.Fy;
 
-		//console.log("Fx: " + this.Fx + " Fy: " + this.Fy);
+		console.log("Fx: " + this.Fx + " Fy: " + this.Fy);
 
 		this.Fx = 0;
 		this.Fy = 0;
@@ -29,7 +29,9 @@ function Ball(initX,initY){
 	}
 
 	this.draw = function(ctx){
-		ctx.fillRect(this.x,this.y,5,5);
+		//this.$img.rotate(Math.atan2(-this.Vy,this.Vx));
+		//ctx.drawImage(this.$img.get(0),this.x,this.y);
+		ctx.fillRect(this.x,this.y,4,4);
 	}
 
 	this.addForce = function(Fx,Fy){

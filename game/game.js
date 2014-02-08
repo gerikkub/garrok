@@ -1,3 +1,9 @@
+var ballState;
+
+var STATE_BALL_WAITING = 0
+var STATE_BALL_FIRED = 1;
+
+
 function Game(){
 	this.currentLevel = 0;
 
@@ -18,11 +24,31 @@ function Game(){
 
 		var ballState = STATE_BALL_WAITING;
 
+		var aimAngle = 0;
+
+		$('body').keydown(function(ev){
+			if(ev.which == 38){ //UP
+				aimAngle += 5*Math.PI/180;
+				if(aimAngle > Math.PI / 2) aimAngle = Math.PI / 2;
+			} else if(ev.which == 40){//DOWN
+				aimAngle -= 5*Math.PI/180;
+				if(aimAngle < -1*Math.PI / 2) aimAngle = -1*Math.PI / 2;
+			} else if(ev.which == 32){//SPACE
+				ballState = STATE_BALL_FIRED;
+				ball.Vx = 5 * Math.cos(aimAngle);
+				ball.Vy = -5 * Math.sin(aimAngle);
+			}
+		})
+
 		var FPS = 30;
 		setInterval(function() {
 			
 			if(ballState == STATE_BALL_WAITING){
 				// Wait for the ball to be fired
+
+				//console.log(aimAngle);
+
+
 				updateLevelBallNotActive(level,ball);
 			} else {
 				updateLevelBallActive(level,ball);
@@ -60,14 +86,16 @@ var BALL_DESTROYED = 1;
 
 function updateLevelBallActive(lvl,ball){
 
-	ball.update();
+	
 	for(var i = 0;i < lvl.numPlanets;i++){
 		lvl.planets[i].update();
+		lvl.planets[i].applyGravity(ball);
 		if(detectCollision(ball,lvl.planets[i])){
 			ball.reset();
 			return BALL_DESTROYED;
 		}
 	}
+	ball.update();
 
 	return BALL_FINE;
 
@@ -83,8 +111,4 @@ function drawLevel(ball,lvl,ctx){
 	}
 }
 
-var ballState;
-
-var STATE_BALL_WAITING = 0
-var STATE_BALL_FIRED = 1;
 

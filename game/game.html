@@ -1,7 +1,7 @@
 <html>
 <head>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="jQueryRotate.js" ></script>
+	<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
 	<script type="text/javascript" src="ball.js" ></script> 
 	<script type="text/javascript" src="planet.js" ></script>
 	<script type="text/javascript" src="level.js" ></script>
@@ -23,12 +23,13 @@
 			//document.getElementById("gameCanvas").width = screen.innerWidth;
 			//$("#gameCanvas").height(screen.innerHeight);
 
+
 			var game = new Game();
 			var lvl = new Level(20,20,80,80);
-			lvl.addPlanet(80,80,20,10000,Math.PI/180,0,0);
-			lvl.addPlanet(60,60,10,10000,Math.PI/180,0,80,40,80,80,0);
-			lvl.addWall(50,0,260);
-			lvl.addWall(180,20,100);
+			lvl.addPlanet(80,200,20,5000,Math.PI/180,0,0);
+			lvl.addPlanet(60,60,10,5000,Math.PI/180,0,80,40,80,200,Math.PI/4);
+			//lvl.addWall(50,0,260);
+			//lvl.addWall(180,20,100);
 
 			game.addLevel(lvl);
 
@@ -70,7 +71,6 @@
 <body onload="startGame()" onresize="resizeCanvas()" >
 
 	<canvas id="gameCanvas" width="640" height="480"></canvas>
-	
 
 
 

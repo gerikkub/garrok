@@ -5,7 +5,7 @@ function Wall(x,y1,y2){
 	this.y2 = y2;
 
 	var wallImg = new Image();
-	wallImg.src = "../assets/asteroid_belt.svg";
+	wallImg.src = "../assets/asteroid_belt.png";
 
 	this.draw = function(ctx){
 		if(this.y2 < this.y1){

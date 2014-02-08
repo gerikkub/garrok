@@ -1,0 +1,48 @@
+<html>
+<head>
+	<script type="text/javascript" src="ball.js" ></script> 
+	<!-- <script type="text/javascript" src="planet.js" ></script> -->
+
+	<img id="bluePlanet" src="../assets/g3_blueplanet.png" width="20" height="20">
+
+</head>
+<body>
+
+	<canvas id="gameCanvas" width="640" height="480"></canvas>
+
+	<script type="text/javascript">
+
+		var c = document.getElementById("gameCanvas");
+		var ctx = c.getContext("2d");
+		var img = document.getElementById("bluePlanet");
+
+		var ball = new Ball(20,20);
+
+		function update(){
+			ball.addForce(0,1);
+			ball.update();
+		}
+
+		function draw(){
+			ctx.clearRect(0,0,640,480);
+			ctx.drawImage(img,ball.x,ball.y);
+		}
+
+		
+
+		
+		ctx.drawImage(img,50,50);
+
+		var FPS = 30;
+		setInterval(function() {
+			update();
+			draw();
+		}, 1000/FPS);
+
+
+	</script>
+
+
+
+</body>
+</html>

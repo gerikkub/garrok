@@ -1,10 +1,10 @@
-function Level(initX,initY,alienX,alienY){
+function Level(initX,initY,ufoX,ufoY){
 
 	this.initX = initX;
 	this.initY = initY;
 
-	this.alienX = alienX;
-	this.alienY = alienY;
+	this.ufoX = ufoX;
+	this.ufoY = ufoY;
 
 	this.numPlanets = 0;
 	this.planets = new Array();

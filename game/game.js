@@ -21,6 +21,8 @@ function Game(){
 
 		var level = this.levels[lvlnum];
 		var ball = new Ball(level.initX,level.initY);
+		console.log(level.ufoX + " " + level.ufoY);
+		var ufo = new UFO(level.ufoX,level.ufoY);
 
 		var ballState = STATE_BALL_WAITING;
 
@@ -51,11 +53,13 @@ function Game(){
 
 				updateLevelBallNotActive(level,ball);
 			} else {
-				updateLevelBallActive(level,ball);
+				if(updateLevelBallActive(level,ball) == BALL_DESTROYED){
+					ballState = STATE_BALL_WAITING;
+				}
 			}
 
 			ctx.clearRect(0,0,640,480);
-			drawLevel(ball,level,ctx);
+			drawLevel(ball,level,ufo,ctx);
 		}, 1000/FPS);
 
 	}
@@ -64,6 +68,7 @@ function Game(){
 }
 
 function detectCollision(ball,planet){
+
 	if(distSquared(ball.x,ball.y,planet.x,planet.y) < Math.pow(planet.radius + ball.radius,2)){
 		return true;
 	} else {
@@ -101,7 +106,7 @@ function updateLevelBallActive(lvl,ball){
 
 }
 
-function drawLevel(ball,lvl,ctx){
+function drawLevel(ball,lvl,ufo,ctx){
 	ball.draw(ctx);
 	for(var i = 0;i < lvl.numPlanets;i++){
 		lvl.planets[i].draw(ctx);
@@ -109,6 +114,7 @@ function drawLevel(ball,lvl,ctx){
 	for(var i = 0;i < lvl.numWalls;i++){
 		lvl.walls[i].draw(ctx);
 	}
+	ufo.draw(ctx);
 }
 
 

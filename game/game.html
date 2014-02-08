@@ -10,6 +10,8 @@
 	<script type="text/javascript" src="ufo.js" ></script>
 	<script type="text/javascript">
 
+	var game;
+
 		function startGame(){
 
 			//var canvas = new Canvas();
@@ -25,16 +27,30 @@
 			//$("#gameCanvas").height(screen.innerHeight);
 
 
-			var game = new Game();
-			var lvl = new Level(20,20,80,80);
+			game = new Game();
+			var lvl = new Level(20,20,180,100);
 			lvl.addPlanet(80,200,20,5000,Math.PI/180,0,0);
-			lvl.addPlanet(60,60,10,5000,Math.PI/180,0,80,40,80,200,Math.PI/4);
+			//lvl.addPlanet(60,60,10,5000,Math.PI/180,0,80,40,80,200,Math.PI/4);
 			//lvl.addWall(50,0,260);
 			//lvl.addWall(180,20,100);
 
 			game.addLevel(lvl);
 
+			lvl = new Level(20,20,300,50);
+			lvl.addPlanet(120,300,40,10000,0,0,0);
+
+			game.addLevel(lvl);
+
 			game.runLevel(0);
+
+		}
+
+		function startNextLevel(lvlnum){
+			if(game.numLevels > lvlnum){
+				game.runLevel(lvlnum);
+			} else {
+				console.log("You Win!");
+			}
 		}
 
 		function resizeCanvas(){
@@ -71,7 +87,17 @@
 </head>
 <body onload="startGame()" onresize="resizeCanvas()" >
 
-	<canvas id="gameCanvas" width="640" height="480"></canvas>
+	<div id="mainDiv">
+		
+	</div>
+
+	<div id="instructionsDiv" visibility="invisible">
+	</div>
+
+	<div id="gameDiv" visibility="invisible">
+		<canvas id="gameCanvas" width="640" height="480"></canvas>
+	</div>
+
 
 
 

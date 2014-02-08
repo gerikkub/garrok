@@ -1,4 +1,4 @@
-function Planet(x,y,radius,gravity,image){
+function Planet(x,y,radius,gravity,dTheta,image){
 	this.x = x;
 	this.y = y;
 	this.r = radius;
@@ -12,6 +12,13 @@ function Planet(x,y,radius,gravity,image){
 
 	this.img = image;
 
+	this.enableMovement = false;
+	this.theta = 0;
+	this.dTheta = dTheta;
+
+	img = new Image();
+	img.src = "../assets/g3_blueplanet.png";
+
 	this.applyGravity = function(ball){
 		dx = this.x - ball.x;
 		dy = this.y - ball.y;
@@ -24,21 +31,45 @@ function Planet(x,y,radius,gravity,image){
 		ball.addForce(cart["x"],cart["y"]);
 	}
 
-	this.update = function(){
-		this.Vx += this.Fx;
-		this.Vy += this.Fy;
+	this.setPath = function(semiMajorAxis,semiMinorAxis,focusX,focusY,phi){
 
-		this.Fx = 0;
-		this.Fy = 0;
+		this.enableMovement = true;
 
-		this.x += this.Vx;
-		this.y += this.Vy;
+		this.semiMajorAxis = semiMajorAxis;
+		this.semiMinorAxis = semiMinorAxis;
+		this.eccentricity = Math.sqrt((Math.pow(semiMajorAxis,2) - Math.pow(semiMinorAxis,2)) / Math.pow(semiMajorAxis,2));
+		this.focusX = focusX;
+		this.focusY = focusY;
+
+		this.fociDistance = 2 * Math.sqrt(Math.pow(this.semiMajorAxis,2) - Math.pow(this.semiMinorAxis,2));
+
+		this.phi = phi;
+
+		console.log(this.fociDistance);
 
 	}
 
-	this.addForce = function(Fx,Fy){
-		this.Fx += Fx;
-		this.Fy += Fy;
+	this.update = function(){
+
+		if(this.enableMovement == true){
+
+			var r = 2*(this.semiMajorAxis*(1 - Math.pow(this.eccentricity,2)))/(1+this.eccentricity*Math.cos(this.theta));
+
+			pos = polarToCartesian(r,this.theta + this.phi);
+
+			this.x = pos["x"] + this.focusX + 2*this.fociDistance*Math.cos(this.phi);
+			this.y = pos["y"] + this.focusY - 2*this.fociDistance*Math.sin(this.phi);
+
+			this.theta += dTheta;
+			if(this.theta > 2*Math.PI) this.theta -= 2*Math.PI;
+
+		}
+
+	}
+
+	this.draw = function(ctx){
+		ctx.drawImage(img,this.x,this.y,20,20);
+
 	}
 
 }

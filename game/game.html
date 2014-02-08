@@ -1,30 +1,76 @@
 <html>
 <head>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="jQueryRotate.js" ></script>
 	<script type="text/javascript" src="ball.js" ></script> 
 	<script type="text/javascript" src="planet.js" ></script>
 	<script type="text/javascript" src="level.js" ></script>
 	<script type="text/javascript" src="game.js" ></script>
+	<script type="text/javascript" src="wall.js" ></script>
+	<script type="text/javascript">
+
+		function startGame(){
+
+			//var canvas = new Canvas();
+			//$(body).append(canvas);
+
+			$("#gameCanvas").mousemove(function(e) {
+
+				//console.log(e.clientX,e.clientY);
+
+			});
+
+			//document.getElementById("gameCanvas").width = screen.innerWidth;
+			//$("#gameCanvas").height(screen.innerHeight);
+
+			var game = new Game();
+			var lvl = new Level(20,20,80,80);
+			lvl.addPlanet(80,80,20,10000,Math.PI/180,0,0);
+			lvl.addPlanet(60,60,10,10000,Math.PI/180,0,80,40,80,80,0);
+			lvl.addWall(50,0,260);
+			lvl.addWall(180,20,100);
+
+			game.addLevel(lvl);
+
+			game.runLevel(0);
+		}
+
+		function resizeCanvas(){
+
+			/*var canvas = document.getElementById("gameCanvas");
+
+			var gameWidth = window.innerWidth;
+			var gameHeight = window.innerHeight;
+			var scaleToFitX = gameWidth / 640;
+			var scaleToFitY = gameHeight / 480;
+
+			var currentScreenRatio = gameWidth / gameHeight;
+			var optimalRatio = Math.min(scaleToFitX, scaleToFitY);
+
+			if(Math.abs(currentScreenRatio - optimalRatio) < 0.02){
+				canvas.style.width = gameWidth + "px";
+				canvas.style.height = gameHeight + "px";
+			} else {
+				canvas.style.width = 800 * optimalRatio + "px";
+				canvas.style.height = 480 * optimalRatio + "px";
+			}*/
+
+		}		
+
+		
+
+		function printMouseXY(ev){
+			//console.log(ev);
+		}
+
+	</script>
 
 
 </head>
-<body>
+<body onload="startGame()" onresize="resizeCanvas()" >
 
 	<canvas id="gameCanvas" width="640" height="480"></canvas>
-
-	<script type="text/javascript">
-
-		var game = new Game();
-		var lvl = new Level(20,20,80,80);
-		lvl.addPlanet(80,80,20,10000,Math.PI/180,0,0);
-		lvl.addPlanet(60,60,20,10000,Math.PI/180,0,30,30,80,80,0);
-
-		game.addLevel(lvl);
-
-		game.runLevel(0);
-		
-
-
-	</script>
+	
 
 
 

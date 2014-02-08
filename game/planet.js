@@ -17,7 +17,7 @@ function Planet(x,y,radius,gravity,dTheta,image){
 	this.dTheta = dTheta;
 
 	img = new Image();
-	img.src = "../assets/g3_blueplanet.png";
+	img.src = "../assets/g3_blueplanet.svg";
 
 	this.applyGravity = function(ball){
 		dx = this.x - ball.x;
@@ -68,8 +68,7 @@ function Planet(x,y,radius,gravity,dTheta,image){
 	}
 
 	this.draw = function(ctx){
-		ctx.drawImage(img,this.x,this.y,20,20);
-
+		ctx.drawImage(img,this.x - this.r,this.y - this.r,this.r*2,this.r*2);
 	}
 
 }

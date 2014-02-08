@@ -78,6 +78,9 @@ function drawLevel(ball,lvl,ctx){
 	for(var i = 0;i < lvl.numPlanets;i++){
 		lvl.planets[i].draw(ctx);
 	}
+	for(var i = 0;i < lvl.numWalls;i++){
+		lvl.walls[i].draw(ctx);
+	}
 }
 
 var ballState;

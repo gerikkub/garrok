@@ -1,5 +1,8 @@
 function Ball(initX,initY){
 
+	this.initX = initX;
+	this.initY = initY;
+
 	this.x = initX;
 	this.y = initY;
 
@@ -23,6 +26,10 @@ function Ball(initX,initY){
 		this.x += this.Vx;
 		this.y += this.Vy;
 
+	}
+
+	this.draw = function(ctx){
+		ctx.fillRect(this.x,this.y,5,5);
 	}
 
 	this.addForce = function(Fx,Fy){

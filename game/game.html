@@ -2,6 +2,9 @@
 <head>
 	<script type="text/javascript" src="ball.js" ></script> 
 	<script type="text/javascript" src="planet.js" ></script>
+	<script type="text/javascript" src="level.js" ></script>
+	<script type="text/javascript" src="game.js" ></script>
+
 
 </head>
 <body>
@@ -10,43 +13,15 @@
 
 	<script type="text/javascript">
 
-		var c = document.getElementById("gameCanvas");
-		var ctx = c.getContext("2d");
-		var img = document.getElementById("bluePlanet");
+		var game = new Game();
+		var lvl = new Level(20,20,80,80);
+		lvl.addPlanet(80,80,20,10000,Math.PI/180,0,0);
+		lvl.addPlanet(60,60,20,10000,Math.PI/180,0,30,30,80,80,0);
 
-		var ball = new Ball(200,200);
-		ball.Vx = 10;
-		var planet = new Planet(100,100,10,10000,0,0);
-		var planet2 = new Planet(0,0,10,10000,3*Math.PI/180,0);
-		planet2.setPath(35,35,100,100,6*Math.PI/4);
+		game.addLevel(lvl);
 
-		var img = new Image();
-		img.src = "../assets/g3_blueplanet.png";
-
-		function update(){
-			planet.applyGravity(ball)
-			ball.update();
-			planet2.update();
-		}
-
-		function draw(){
-			ctx.clearRect(0,0,640,480);
-			//ctx.drawImage(img,ball.x,ball.y,20,20);
-			//ctx.drawImage(img,planet.x,planet.y,20,20);
-			planet.draw(ctx);
-			planet2.draw(ctx);
-		}
-
+		game.runLevel(0);
 		
-
-		
-		//ctx.drawImage(img,50,50);
-
-		var FPS = 30;
-		setInterval(function() {
-			update();
-			draw();
-		}, 1000/FPS);
 
 
 	</script>

@@ -15,6 +15,8 @@ function Ball(initX,initY){
 		this.Vx += this.Fx;
 		this.Vy += this.Fy;
 
+		//console.log("Fx: " + this.Fx + " Fy: " + this.Fy);
+
 		this.Fx = 0;
 		this.Fy = 0;
 

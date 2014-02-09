@@ -17,33 +17,62 @@
 			//var canvas = new Canvas();
 			//$(body).append(canvas);
 
+
 			$("#gameCanvas").mousemove(function(e) {
 
 				//console.log(e.clientX,e.clientY);
 
 			});
 
+			resizeCanvas();
+
+			var canvas = document.getElementById("gameCanvas");
+
+
 			//document.getElementById("gameCanvas").width = screen.innerWidth;
 			//$("#gameCanvas").height(screen.innerHeight);
 
-			//lvl.addPlanet(60,60,10,5000,Math.PI/180,0,80,40,80,200,Math.PI/4);
+
 			var game = new Game();
-			var lvl = new Level(20,20,800,80);
-			lvl.addPlanet(320,240,50,5000,Math.PI/180,1);
-			lvl.addPlanet(100,100,20,5000,Math.PI/180,2,100,80,320,240,Math.PI/4);
-			//lvl.addWall(50,0,260);
-			//lvl.addWall(180,20,100);
+			var lvl = new Level(0.03125*canvas.width,0.5*canvas.height,0.8*canvas.width,0.5*canvas.height);
+			lvl.addPlanet(0.5*canvas.width,0.5*canvas.height,20,5000,Math.PI/180,0,0);
+			//lvl.addPlanet(60,60,10,5000,.07,0,45,35,250,350,Math.PI/4);
+			//lvl.addPlanet(400,150,25,5000,Math.PI/180,0,0);
+			//lvl.addPlanet(60,60,10,5000,.08,0,30,30,400,150,Math.PI/4);
+			//lvl.addPlanet(230,220,30,5000,Math.PI/180,0,0);
+			//lvl.addPlanet(60,60,10,5000,.1,0,45,45,280,300,Math.PI/4);
+			//lvl.addWall(280,0,180);
+			//lvl.addWall(450,300,480);
 
 			game.addLevel(lvl);
 
-			lvl = new Level(20,20,300,50);
-			lvl.addPlanet(120,300,40,10000,0,0,0);
+			lvl = new Level(0.03125*canvas.width,0.5*canvas.height,0.8*canvas.width,(1/3)*canvas.height);
+			lvl.addPlanet(0.578125*canvas.width, 0.25*canvas.height, 30, 5000, Math.PI/180,0,0);
+			lvl.addPlanet(0.28125*canvas.width, (7/12)*canvas.height, 15, 5000, Math.PI/180,0,0);
+			game.addLevel(lvl);
 
+			lvl = new Level(0.03125*canvas.width,0.5*canvas.height,0.8*canvas.width,0.75*canvas.height);
+			lvl.addPlanet(0.4375*canvas.width, 0.625*canvas.height, 30, 5000, Math.PI/180,0,0);
+			lvl.addPlanet(60,60,10,5000,.1,0,30,30,0.4375*canvas.width, 0.625*canvas.height,Math.PI/4);
+			game.addLevel(lvl);
+
+			lvl= new Level(0.03125*canvas.width,0.5*canvas.height,0.46875*canvas.width,0.3125*canvas.height);
+			lvl.addPlanet(0.359375*canvas.width,(29/60)*canvas.height, 30, 5000, Math.PI/180,0,0);
+			lvl.addWall(0.28125*canvas.width,0,0.46875*canvas.height);
+			game.addLevel(lvl);
+
+			lvl = new Level(0.03125*canvas.width,0.5*canvas.height,0.8203125*canvas.width,0.28125*canvas.height);
+			lvl.addPlanet(0.390625*canvas.width,0.72916*canvas.height, 20, 5000, Math.PI/180,0,0);
+			lvl.addPlanet(60,60,10,5000,.07,0,45,35,0.390625*canvas.width,0.72916*canvas.height,Math.PI/4);
+			lvl.addPlanet(0.625*canvas.width,0.3125*canvas.height, 30, 5000, Math.PI/180,0,0);
+			lvl.addPlanet(60,60,10,5000,.08,0,30,30,0.625*canvas.width,0.3125*canvas.height,Math.PI/4);
+			lvl.addWall(0.4375*canvas.width,0,0.375*canvas.height);
+			lvl.addWall(0.703125*canvas.width,0.625*canvas.height,canvas.height);
 			game.addLevel(lvl);
 
 			game.runLevel(0);
-
 		}
+
 
 		function startNextLevel(lvlnum){
 			if(game.numLevels > lvlnum){
@@ -55,7 +84,7 @@
 
 		function resizeCanvas(){
 
-			/*var canvas = document.getElementById("gameCanvas");
+			var canvas = document.getElementById("gameCanvas");
 
 			var gameWidth = window.innerWidth;
 			var gameHeight = window.innerHeight;
@@ -71,7 +100,7 @@
 			} else {
 				canvas.style.width = 640 * optimalRatio + "px";
 				canvas.style.height = 480 * optimalRatio + "px";
-			}*/
+			}
 
 		}		
 

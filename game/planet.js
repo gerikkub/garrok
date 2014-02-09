@@ -2,7 +2,7 @@ function Planet(x,y,radius,gravity,dTheta,image){
 	this.x = x;
 	this.y = y;
 	this.r = radius;
-	this.g = gravity;
+	this.g = this.r * 1500;
 
 	this.Vx = 0;
 	this.Vy = 0;
@@ -17,7 +17,18 @@ function Planet(x,y,radius,gravity,dTheta,image){
 	this.dTheta = dTheta;
 
 	var img = new Image();
-	img.src = "../assets/g3_blueplanet.png";
+	switch(image){
+		case 0:
+			img.src = "../assets/g3_blueplanet.png";
+			break;
+		case 1:
+			img.src = "../assets/g3_metalplanet.png";
+			break;
+		case 2:
+		default:
+			img.src = "../assets/comet.png";
+	}
+	
 
 	this.applyGravity = function(ball){
 		dx = this.x - ball.x;
@@ -25,6 +36,8 @@ function Planet(x,y,radius,gravity,dTheta,image){
 		theta = Math.atan2(dx,dy) - Math.PI/2;
 
 		r = this.g/(dx*dx + dy*dy);
+
+		console.log(r);
 
 		//console.log(dx + " " + dy);
 		cart = polarToCartesian(r,theta);

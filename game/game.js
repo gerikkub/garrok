@@ -109,6 +109,7 @@ function updateLevelBallActive(lvl,ball,ufo){
 	//console.log(lvl.numPlanets);
 	for(var i = 0;i < lvl.numPlanets;i++){
 		lvl.planets[i].update();
+		console.log(i);
 		lvl.planets[i].applyGravity(ball);
 		if(ball.collidesWith(lvl.planets[i])){
 			ball.reset();

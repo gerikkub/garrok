@@ -14,6 +14,9 @@ function Ball(initX,initY){
 	this.Fx = 0;	//Sum of the forces in the x direction
 	this.Fy = 0; 
 
+	this.img = new Image();
+	this.img.src = "../assets/rocket.png";
+
 	this.update = function(){
 
 		//Assuming mass of the ball is 1. Vx += Fx
@@ -31,9 +34,16 @@ function Ball(initX,initY){
 	}
 
 	this.draw = function(ctx){
-		//this.$img.rotate(Math.atan2(-this.Vy,this.Vx));
-		//ctx.drawImage(this.$img.get(0),this.x,this.y);
-		ctx.fillRect(this.x,this.y,4,4);
+		if((this.Vx != 0) && (this.Vy != 0)){
+			ctx.save();
+			ctx.translate(0 - this.x,0 - this.y);
+			ctx.rotate(Math.atan2(this.Vy,this.Vx));
+			ctx.drawImage(this.img,0,0,50,80);
+			ctx.restore();
+		} else {
+			ctx.drawImage(this.img,this.x - 25,this.y - 40,50,80);
+		}
+		//ctx.fillRect(this.x,this.y,4,4);
 	}
 
 	this.addForce = function(Fx,Fy){

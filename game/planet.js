@@ -22,7 +22,7 @@ function Planet(x,y,radius,gravity,dTheta,image){
 			img.src = "../assets/g3_blueplanet.png";
 			break;
 		case 1:
-			img.src = "../assets/g3_metalplanet.png";
+			img.src = "../assets/planet_metal.png";
 			break;
 		case 2:
 		default:

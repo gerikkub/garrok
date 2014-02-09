@@ -34,15 +34,16 @@ function Ball(initX,initY){
 	}
 
 	this.draw = function(ctx){
-		if((this.Vx != 0) && (this.Vy != 0)){
+		//if((this.Vx != 0) && (this.Vy != 0)){
 			ctx.save();
-			ctx.translate(0 - this.x,0 - this.y);
-			ctx.rotate(Math.atan2(this.Vy,this.Vx));
-			ctx.drawImage(this.img,0,0,50,80);
+			ctx.translate(this.x,this.y);
+			//ctx.rotate(Math.atan2(this.Vy,this.Vx));
+			ctx.fillRect(0,0,4,4);
+			//ctx.drawImage(this.img,0,0,50,80);
 			ctx.restore();
-		} else {
-			ctx.drawImage(this.img,this.x - 25,this.y - 40,50,80);
-		}
+		//} else {
+			//ctx.drawImage(this.img,this.x - 25,this.y - 40,50,80);
+		//}
 		//ctx.fillRect(this.x,this.y,4,4);
 	}
 

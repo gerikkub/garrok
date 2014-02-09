@@ -86,7 +86,15 @@
 		}
 
 	</script>
-
+	<style type="text/css">
+#mainDiv { 
+  background: url(../assets/menu.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+	</style>
 
 </head>
 <body onload="startGame()" onresize="resizeCanvas()" >
@@ -97,13 +105,15 @@
 
 	<div id="instructionsDiv" visibility="invisible">
 	</div>
-
+		<img src="../assets/planet_metal.png">
 	<div id="gameDiv" visibility="invisible">
 		<canvas id="gameCanvas" width="640" height="480"></canvas>
 	</div>
 
 
 
-
+<audio loop autoplay>
+	<source src="../assets/background-music.wav" type="audio/wav">
+</audio>
 </body>
 </html>

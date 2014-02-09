@@ -36,19 +36,18 @@ function Game(){
 		$('body').keydown(function(ev){
 			if(ev.which == 38){ //UP
 		
-				aimAngle += 5*Math.PI/180;
-				if(aimAngle > Math.PI / 2) aimAngle = Math.PI / 2;
+				ball.aimAngle += 5*Math.PI/180;
+				if(ball.aimAngle > Math.PI / 2) ball.aimAngle = Math.PI / 2;
 		
 			} else if(ev.which == 40){//DOWN
 		
-				aimAngle -= 5*Math.PI/180;
-				if(aimAngle < -1*Math.PI / 2) aimAngle = -1*Math.PI / 2;
+				ball.aimAngle -= 5*Math.PI/180;
+				if(ball.aimAngle < -1*Math.PI / 2) ball.aimAngle = -1*Math.PI / 2;
 		
 			} else if(ev.which == 32){//SPACE
 		
 				ballState = STATE_BALL_FIRED;
-				ball.Vx = 5 * Math.cos(aimAngle);
-				ball.Vy = -5 * Math.sin(aimAngle);
+				ball.launch();
 			}
 		});
 

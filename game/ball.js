@@ -14,6 +14,8 @@ function Ball(initX,initY){
 	this.Fx = 0;	//Sum of the forces in the x direction
 	this.Fy = 0; 
 
+	this.aimAngle = 0;
+
 	this.img = new Image();
 	this.img.src = "../assets/rocket.png";
 
@@ -34,16 +36,21 @@ function Ball(initX,initY){
 	}
 
 	this.draw = function(ctx){
-		//if((this.Vx != 0) && (this.Vy != 0)){
+		if((this.Vx != 0) && (this.Vy != 0)){
 			ctx.save();
 			ctx.translate(this.x,this.y);
-			//ctx.rotate(Math.atan2(this.Vy,this.Vx));
-			ctx.fillRect(0,0,4,4);
-			//ctx.drawImage(this.img,0,0,50,80);
+			ctx.rotate(Math.atan2(this.Vy,this.Vx) + Math.PI/2);
+			//ctx.fillRect(0,0,4,4);
+			ctx.drawImage(this.img,-25,-40,50,80);
 			ctx.restore();
-		//} else {
-			//ctx.drawImage(this.img,this.x - 25,this.y - 40,50,80);
-		//}
+		} else {
+			console.log(this.aimAngle);
+			ctx.save()
+			ctx.translate(this.x,this.y);
+			ctx.rotate(0 - this.aimAngle + Math.PI/2);
+			ctx.drawImage(this.img,-25,-40,50,80);
+			ctx.restore();
+		}
 		//ctx.fillRect(this.x,this.y,4,4);
 	}
 
@@ -69,6 +76,12 @@ function Ball(initX,initY){
 		} else {
 			return false;
 		}
+	}
+
+	this.launch = function(){
+
+		this.Vx = 5 * Math.cos(this.aimAngle);
+		this.Vy = -5 * Math.sin(this.aimAngle);
 	}
 
 }

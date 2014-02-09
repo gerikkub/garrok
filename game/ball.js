@@ -55,8 +55,8 @@ function Ball(initX,initY){
 	}
 
 	this.addForce = function(Fx,Fy){
-		this.Fx = Fx;
-		this.Fy = Fy;
+		this.Fx += Fx;
+		this.Fy += Fy;
 	}
 
 	this.reset = function(){
@@ -64,6 +64,8 @@ function Ball(initX,initY){
 		this.Vy = 0;
 		this.x = this.initX;
 		this.y = this.initY;
+		this.Fx = 0;
+		this.Fy = 0;
 	}
 
 	this.collidesWith = function(obj){

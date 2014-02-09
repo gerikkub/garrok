@@ -2,7 +2,7 @@ function Planet(x,y,radius,gravity,dTheta,image){
 	this.x = x;
 	this.y = y;
 	this.r = radius;
-	this.g = this.r * 1500;
+	this.g = this.r * 1100;
 
 	this.Vx = 0;
 	this.Vy = 0;

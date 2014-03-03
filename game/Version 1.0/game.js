@@ -120,7 +120,7 @@ function updateLevelBallActive(lvl,ball,ufo){
 		}
 	}
 	ball.update();
-	if(distSquared(ball.x,ball.y,0,0) > Math.pow(3000,2)){
+	if(distSquared(ball.x,ball.y,0,0) > Math.pow(1500,2)){
 		ball.reset();
 		return BALL_DESTROYED;
 	} 

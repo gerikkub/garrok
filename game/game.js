@@ -38,16 +38,17 @@ function Game(){
 		
 				ball.aimAngle += 5*Math.PI/180;
 				if(ball.aimAngle > Math.PI / 2) ball.aimAngle = Math.PI / 2;
-		
+				ev.preventDefault();
 			} else if(ev.which == 40){//DOWN
 		
 				ball.aimAngle -= 5*Math.PI/180;
 				if(ball.aimAngle < -1*Math.PI / 2) ball.aimAngle = -1*Math.PI / 2;
-		
+				ev.preventDefault();
 			} else if(ev.which == 32){//SPACE
 		
 				ballState = STATE_BALL_FIRED;
 				ball.launch();
+				ev.preventDefault();
 			}
 		});
 
